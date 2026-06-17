@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/campus_service?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSsl=false&restrictedAuth=mysql_native_password}
+    username: ${DB_USERNAME:campus_user}
+    password: ${DB_PASSWORD:123456}
+    driver-class-name: ${DB_DRIVER:org.mariadb.jdbc.Driver}
+  jpa:
+    database-platform: ${DB_DIALECT:org.hibernate.dialect.MariaDBDialect}
+    hibernate:
+      ddl-auto: update
+    show-sql: ${SHOW_SQL:false}
+  h2:
+    console:
+      enabled: ${H2_CONSOLE_ENABLED:false}
+      path: /h2-console
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+jwt:
+  secret: ${JWT_SECRET:campus-service-jwt-secret-key-2024}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+sms:
+  aliyun:
+    access-key-id: ${ALIYUN_SMS_ACCESS_KEY_ID:}
+    access-key-secret: ${ALIYUN_SMS_ACCESS_KEY_SECRET:}
+    sign-name: ${ALIYUN_SMS_SIGN_NAME:}
+    template-code: ${ALIYUN_SMS_TEMPLATE_CODE:}
+    endpoint: ${ALIYUN_SMS_ENDPOINT:dysmsapi.aliyuncs.com}
+
+logging:
+  level:
+    com.example.campus: ${APP_LOG_LEVEL:INFO}
